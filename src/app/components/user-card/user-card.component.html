@@ -1,0 +1,10 @@
+<div class="card" appAppHighlight>
+  <img [src]="user()?.avatar" alt="Profile Picture" class="noSelect">
+  <h2 class="noSelect">{{user()?.first_name}} {{user()?.last_name}}</h2>
+  <div class="social-icons" *ngIf="withAction()">
+    <a [routerLink]="[user()?.id]" routerLinkActive="router-link-active">
+      <img src="assets/images/user-id-svgrepo-com.png" class="user-details-img" matTooltip="User Details" />
+    </a>
+
+  </div>
+</div>

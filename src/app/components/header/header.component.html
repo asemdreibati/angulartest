@@ -1,0 +1,9 @@
+<mat-toolbar color="primary">
+    <div style="display: flex; flex:1 1 auto">
+        <span class="title">Angular 18.2</span>
+        <a mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+        <a mat-button routerLink="/users" routerLinkActive="active">Users</a>
+    </div>
+    <input class="input-search" type="text" placeholder="Search" *ngIf="showSearch" type="number"
+        (input)="searchUser($event)">
+</mat-toolbar>

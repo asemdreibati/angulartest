@@ -1,0 +1,55 @@
+.user-card {
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: #c8d0ff 1px solid;
+  margin-bottom: 5px;
+}
+
+.user-list {
+  padding: 0;
+  list-style: none;
+}
+
+.user-name {
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+.details {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+:host ::ng-deep .mat-mdc-paginator-page-size {
+  display: none !important;
+}
+
+
+// card css
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+
+
+.not-found-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40vh;
+}
+
+:host ::ng-deep .mat-mdc-paginator-container {
+  background-color: #d8ebf6;
+}

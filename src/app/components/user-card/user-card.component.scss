@@ -1,0 +1,184 @@
+.card {
+  position: relative;
+  /* Make the card relative for the pseudo-element */
+  width: 200px;
+  height: 280px;
+  background-color: #fff;
+  border: 2px solid rgba(255, 2, 2, 0.2);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  padding: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+/* Pseudo-element for the gradient border */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  border-radius: 15px;
+  /* Slightly more to cover the card's rounded corners */
+  background: linear-gradient(45deg, #ff6ec4, #7873f5);
+  /* Gradient border */
+  z-index: -1;
+  /* Behind the card */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Card active state */
+.card.active::before {
+  opacity: 1;
+}
+
+.card.active {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  background-color: #f0f0f5;
+}
+
+img {
+  width: 165px;
+  height: 165px;
+  border-radius: 15%;
+  margin: 10px 0px;
+}
+
+h2 {
+  margin: 10px 0;
+  background: linear-gradient(45deg, #ff6ec4, #7873f5);
+  /* Gradient for title */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: color 0.3s ease;
+  /* Smooth transition for color change */
+}
+
+/* Change h2 color to white when the card is active */
+.card.active h2 {
+  color: white;
+  /* Change text color to white */
+  -webkit-background-clip: none;
+  /* Remove background clip for gradient */
+  -webkit-text-fill-color: white;
+  /* Ensure text is white */
+}
+
+.social-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+}
+
+.social-icons a {
+  color: #cdcdcd;
+  font-size: 24px;
+  width: 25px;
+  display: block;
+  transition: transform 0.3s ease, color 0.3s ease;
+  /* Smooth transition */
+}
+
+/* Change social icons color to white when the card is active */
+.card.active .social-icons a {
+  color: #fff;
+  width: 25px;
+  transition: transform 0.3s ease, color 0.3s ease;
+  /* Smooth transition */
+}
+
+.social-icons a:hover {
+  color: #666;
+  /* Change hover color to a darker gray */
+  transform: scale(1.2);
+}
+
+.info-box {
+  width: 320px;
+  height: 400px;
+  padding: 20px;
+  background-color: #2d2d2d;
+  color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateX(-50px) scale(0.8);
+  transition: opacity 0.5s ease, transform 0.6s ease, box-shadow 0.4s ease;
+}
+
+.info-box.active {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+h3 {
+  margin: 10px 0;
+  background: linear-gradient(45deg, #ff6ec4, #7873f5);
+  -webkit-text-fill-color: transparent;
+}
+
+p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  /* Allows pills to wrap if there's not enough space */
+  gap: 10px;
+  /* Space between pills */
+  margin-top: 15px;
+  /* Space above pills */
+}
+
+.pill {
+  background-color: #4a4a4a;
+  /* Charcoal-like background */
+  color: white;
+  /* Text color */
+  padding: 8px 12px;
+  /* Padding around the text */
+  border-radius: 20px;
+  /* Rounded corners */
+  font-size: 12px;
+  /* Font size */
+  transition: background-color 0.3s ease;
+  /* Smooth background transition */
+  cursor: default;
+  /* Indicates these are not clickable */
+}
+
+.pill:hover {
+  background-color: #6c757d;
+  /* Darker gray on hover */
+}
+
+.noSelect {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.noSelect:focus {
+  outline: none !important;
+}
+
+.user-details-img {
+  width: 40px;
+  height: 40px;
+}
