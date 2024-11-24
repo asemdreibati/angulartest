@@ -1,26 +1,46 @@
-<ng-container *ngIf="(loading$|async) as loading">
-  <ng-container *ngIf="(['LOADED', 'NOT_LOADING'].includes(loading)) && !(searchedUser$|async) ;else loader">
-    <ng-container *ngIf="(usersInfo$ | async) as usersInfo">
-      <div class="container">
-        <app-user-card [@headerAnimation]="animationState" *ngFor="let user of usersInfo.data"
-          [user]="user"></app-user-card>
-      </div>
-      <mat-paginator [length]="usersInfo.total" [pageSize]="usersInfo.per_page" [pageIndex]="pageIndex"
-        (page)="paginatorChanged($event)" [showFirstLastButtons]="true">
-      </mat-paginator>
+<ng-container *ngIf="loading$ | async as loading">
+  <ng-container
+    *ngIf="loading == 'LOADED' || loading == 'NOT_LOADING'; else loader"
+  >
+    <ng-container *ngIf="searchedUser$ | async as searchedUser; else allUsers">
+      <app-user-card
+        [@headerAnimation]="animationState"
+        [user]="searchedUser || undefined"
+        class="container"
+      ></app-user-card>
     </ng-container>
   </ng-container>
-</ng-container>
 
-<ng-container *ngIf=" ((loading$|async)=='LOADED'|| 'NOT_LOADING') && (searchedUser$|async) as user">
-  <app-user-card [@headerAnimation]="animationState" [user]="user" class="container"></app-user-card>
-</ng-container>
+  <ng-template #allUsers>
+    <ng-container *ngIf="usersInfo$ | async as usersInfo">
+      <div class="container">
+        <app-user-card
+          [@headerAnimation]="animationState"
+          *ngFor="let user of usersInfo.data"
+          [user]="user"
+        ></app-user-card>
+      </div>
+      <mat-paginator
+        [length]="usersInfo.total"
+        [pageSize]="usersInfo.per_page"
+        [pageIndex]="pageIndex"
+        (page)="paginatorChanged($event)"
+        [showFirstLastButtons]="true"
+      >
+      </mat-paginator>
+    </ng-container>
+  </ng-template>
 
-<ng-template #loader>
-  <div class="spinner-container" *ngIf="(loading$|async)=='LOADING'">
-    <mat-spinner></mat-spinner>
-  </div>
-  <div *ngIf="(loading$|async)=='NOT_LOADED'" class="not-found-img">
-    <img src="assets/images/not-found-error-alert-svgrepo-com.png" />
-  </div>
-</ng-template>
+  <ng-template #loader>
+    <ng-container *ngIf="loading == 'LOADING'; else notFound">
+      <div class="spinner-container">
+        <mat-spinner></mat-spinner>
+      </div>
+    </ng-container>
+  </ng-template>
+  <ng-template #notFound>
+    <div class="not-found-img">
+      <img src="assets/images/not-found-error-alert-svgrepo-com.png" />
+    </div>
+  </ng-template>
+</ng-container>
